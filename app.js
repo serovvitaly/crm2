@@ -9,14 +9,16 @@ Ext.application({
     extend: 'CrmApp.Application',
 
     requires: [
-        'CrmApp.view.main.Main'
+        //'CrmApp.view.main.Main'
+        'CrmApp.view.MainLayout'
     ],
 
     // The name of the initial view to create. With the classic toolkit this class
     // will gain a "viewport" plugin if it does not extend Ext.Viewport. With the
     // modern toolkit, the main view will be added to the Viewport.
     //
-    mainView: 'CrmApp.view.main.Main'
+    //mainView: 'CrmApp.view.main.Main'
+    mainView: 'CrmApp.view.MainLayout'
 
     //-------------------------------------------------------------------------
     // Most customizations should be made to CrmApp.Application. If you need to
