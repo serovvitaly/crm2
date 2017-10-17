@@ -15,7 +15,7 @@ Ext.define('CrmApp.store.Merchants', {
 
     proxy: {
         type: 'ajax',
-        url: '/api/merchants',
+        url: '/api/merchant',
         reader: {
             type: 'json',
             rootProperty: 'data',

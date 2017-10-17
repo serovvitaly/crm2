@@ -35,11 +35,21 @@ Ext.define('CrmApp.view.merchant.BaseView',{
                 store: {
                     type: 'merchants'
                 },
-                columns: [
-                    { text: 'Партнер',  dataIndex: 'name', flex: 1 },
-                    { text: 'Сайт', dataIndex: 'site_url', flex: 1 },
+                columns: [{
+                        text: 'Партнер',
+                        dataIndex: 'name',
+                        flex: 1,
+                        align: 'left'
+                    }, {
+                        text: 'Сайт',
+                        dataIndex: 'site_url',
+                        flex: 1,
+                        xtype: 'templatecolumn',
+                        tpl: '<a href="{site_url}" target="_blank">{site_url}</a>',
+                        align: 'left'
+                    }/*,
                     { text: 'Часы работы', dataIndex: 'work_hours', flex: 2 },
-                    { text: 'Номер телефона', dataIndex: 'phone_number', flex: 2 }
+                    { text: 'Номер телефона', dataIndex: 'phone_number', flex: 2 }*/
                 ],
                 tbar: {
                     xtype: 'pagingtoolbar',
@@ -62,7 +72,7 @@ Ext.define('CrmApp.view.merchant.BaseView',{
             },
             {
                 xtype: 'tabpanel',
-                flex: 1,
+                flex: 2,
                 items: [
                     {
                         title: 'Описание',
