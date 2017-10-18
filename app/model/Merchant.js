@@ -6,6 +6,8 @@ Ext.define('CrmApp.model.Merchant', {
         { name: 'name', type: 'string' },
         { name: 'site_url', type: 'string' },
         { name: 'work_hours', type: 'string' },
-        { name: 'phone_number', type: 'bool' }
+        { name: 'phone_number', type: 'bool' },
+        { name: 'total_sum', type: 'int' },
+        { name: 'total_count', type: 'int' }
     ]
 });

@@ -5,6 +5,7 @@ Ext.define('CrmApp.model.MerchantDataSource', {
         { name: 'id', type: 'int' },
         { name: 'src', type: 'string' },
         { name: 'type', type: 'string' },
-        { name: 'is_active', type: 'bool' }
+        { name: 'is_active', type: 'bool' },
+        { name: 'merchant_id', reference: 'CrmApp.model.Merchant' }
     ]
 });

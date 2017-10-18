@@ -3,9 +3,11 @@ Ext.define('CrmApp.store.MerchantsDataSources', {
 
     alias: 'store.merchants_data_sources',
 
+    storeId: 'merchantsDataSourcesStore',
+
     model: 'CrmApp.model.MerchantDataSource',
 
-    autoLoad: true,
+    autoLoad: false,
 
     pageSize: 50,
 
@@ -15,7 +17,7 @@ Ext.define('CrmApp.store.MerchantsDataSources', {
 
     proxy: {
         type: 'ajax',
-        url: '/api/merchants_data_sources',
+        url: '/api/merchant_data_source',
         reader: {
             type: 'json',
             rootProperty: 'data',

@@ -26,6 +26,7 @@ Ext.define('CrmApp.view.merchant.BaseView',{
                 xtype: 'gridpanel',
                 autoLoad: true,
                 loadMask: true,
+                reference: 'merchantsGrid',
                 requires: [
                     'Ext.toolbar.Paging',
                     'CrmApp.store.Merchants'
@@ -35,21 +36,33 @@ Ext.define('CrmApp.view.merchant.BaseView',{
                 store: {
                     type: 'merchants'
                 },
+                listeners: {
+                    rowclick: function (self, record, element, rowIndex, e, eOpts) {
+                        var sourceDataStore = Ext.getStore('merchantsDataSourcesStore');
+                        sourceDataStore.filter('merchant_id', record.id);
+                        sourceDataStore.load();
+                    }
+                },
                 columns: [{
+                        text: '#',
+                        dataIndex: 'id',
+                        flex: 1,
+                        align: 'left'
+                    }, {
                         text: 'Партнер',
                         dataIndex: 'name',
-                        flex: 1,
+                        flex: 2,
                         align: 'left'
                     }, {
                         text: 'Сайт',
                         dataIndex: 'site_url',
-                        flex: 1,
+                        flex: 2,
                         xtype: 'templatecolumn',
                         tpl: '<a href="{site_url}" target="_blank">{site_url}</a>',
                         align: 'left'
-                    }/*,
-                    { text: 'Часы работы', dataIndex: 'work_hours', flex: 2 },
-                    { text: 'Номер телефона', dataIndex: 'phone_number', flex: 2 }*/
+                    },
+                    { text: 'Оборот', dataIndex: 'total_sum', flex: 1 },
+                    { text: 'Количество', dataIndex: 'total_count', flex: 1 }
                 ],
                 tbar: {
                     xtype: 'pagingtoolbar',
@@ -84,28 +97,33 @@ Ext.define('CrmApp.view.merchant.BaseView',{
                             items: [{
                                 text: 'Добавить источник',
                                 tooltip: 'Добавить источник данных',
-                                toggleHandler: function (button, state) {
-                                    //
-                                }
+                                handler: 'showMerchantDataSourceWin'
                             }]
                         },
                         items: [{
                             xtype: 'gridpanel',
                             title: 'Список источников данных',
-                            autoLoad: true,
+                            autoLoad: false,
                             columns: [
                                 { text: 'Ссылка',  dataIndex: 'src', flex: 3},
                                 { text: 'Тип ресурса', dataIndex: 'type', flex: 1},
-                                { text: 'Активен', dataIndex: 'is_active'},
+                                {
+                                    text: 'Активен',
+                                    dataIndex: 'is_active',
+                                    editor: {
+                                        xtype: 'checkbox',
+                                        cls: 'x-grid-checkheader-editor'
+                                    }
+                                }
                             ],
                             requires: [
                                 'CrmApp.store.MerchantsDataSources'
                             ],
                             store: {
                                 type: 'merchants_data_sources'
-                            },
+                            }
                         }]
-                    },
+                    }
                 ]
             }
         ]
